@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <button ion-button menuToggle icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="!searchShowen">{{title}}</ion-title>
+    <search-bar *ngIf="searchShowen"></search-bar>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showSearch()">
+        <ion-icon name="search" *ngIf="!searchShowen"></ion-icon>
+        <ion-icon name="close" *ngIf="searchShowen"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<movies-list></movies-list>

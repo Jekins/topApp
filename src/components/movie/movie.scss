@@ -1,0 +1,13 @@
+movie {}
+.item-md ion-thumbnail {
+	min-width: 54px;
+}
+.item-md ion-thumbnail img {
+	width: 54px;
+}
+.movie-info {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px !important;
+	margin-bottom: 0 !important;
+}

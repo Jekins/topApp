@@ -1,0 +1,19 @@
+<button ion-item>
+  <ion-thumbnail item-left>
+    <img src="http://topkino.tv/uploads/posts/posters/iphone360_{{movie.id}}.jpg">
+  </ion-thumbnail>
+  <h2>
+    <b>{{movie.title}}</b>
+  </h2>
+  <h3>{{xfields.eng_title}}</h3>
+  <p>{{xfields.zhanr}}</p>
+  <p class="movie-info">
+    <span class="movie-info__left">
+      <b style="color: green">{{xfields.kinopoisk}}</b> •
+      <b style="color: black">{{xfields.kachestvo}}</b>
+    </span>
+    <span class="movie-info__right">
+      {{xfields.year}}
+    </span>
+  </p>
+</button>

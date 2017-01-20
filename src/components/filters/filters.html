@@ -1,0 +1,41 @@
+<form (ngSubmit)="onSubmit($event)" #filtersForm="ngForm">
+  {{diagnostic}}
+  <ion-list>
+
+    <ion-item>
+      <ion-label>Года</ion-label>
+      <ion-select multiple="true" cancelText="Отменить" okText="Принять" name="years" [(ngModel)]="model.years" required>
+        <ion-option [value]="year" *ngFor="let year of years">{{year}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Жанры</ion-label>
+      <ion-select multiple="true" cancelText="Отменить" okText="Принять" name="genres" [(ngModel)]="model.genres" required>
+        <ion-option [value]="genre" *ngFor="let genre of genres">{{genre}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-range min="0" max="10" step="1" name="rating" [(ngModel)]="model.rating">
+        <ion-label range-left>Рейтинг от {{model.rating}} </ion-label>
+        <ion-label range-right>10</ion-label>
+      </ion-range>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Сортировать по</ion-label>
+      <ion-select cancelText="Отменить" okText="Принять" name="sorts" [(ngModel)]="model.sorts" required>
+        <ion-option [value]="sort.val" *ngFor="let sort of sorts">{{sort.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Только HD качество</ion-label>
+      <ion-checkbox name="quality" [(ngModel)]="model.quality"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button full type="submit">Подобрать</button>
+  </div>
+</form>

@@ -3,10 +3,10 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="!searchShowen">{{title}}</ion-title>
-    <search-bar *ngIf="searchShowen"></search-bar>
+    <ion-title *ngIf="!searchShowen">{{pageTitle}}</ion-title>
+    <search-bar *ngIf="searchShowen" (searchMovies)="onSearch($event)"></search-bar>
     <ion-buttons end>
-      <button ion-button icon-only (click)="showSearch()">
+      <button ion-button icon-only (click)="toggleSearch()">
         <ion-icon name="search" *ngIf="!searchShowen"></ion-icon>
         <ion-icon name="close" *ngIf="searchShowen"></ion-icon>
       </button>
@@ -14,4 +14,21 @@
   </ion-toolbar>
 </ion-header>
 
-<movies-list></movies-list>
+<ion-content>
+  <filters (getFiltering)="onFilters($event)"></filters>
+
+  <movies-list [movies]="movies"></movies-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-card *ngIf="thisIsAll">
+      <ion-card-content>
+        {{thisIsAll}}
+      </ion-card-content>
+    </ion-card>
+    <ion-infinite-scroll-content
+      *ngIf="!thisIsAll"
+      loadingSpinner="crescent"
+      loadingText="Снимаем {{title}}...">
+      </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,4 +1,5 @@
 import { NgModule, ErrorHandler } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -6,6 +7,7 @@ import { MyApp } from './app.component';
 import { MoviesService } from '../shared/movies.service';
 
 // components
+import { FiltersComponent } from '../components/filters/filters';
 import { MoviesListComponent } from '../components/movies-list/movies-list';
 import { MovieComponent } from '../components/movie/movie';
 import { SearchBarComponent } from '../components/search-bar/search-bar';
@@ -21,9 +23,11 @@ import { MoviesPage } from '../pages/movies/movies';
     MovieComponent,
     SearchBarComponent,
     MoviesPage,
-    HomePage
+    HomePage,
+    FiltersComponent
   ],
   imports: [
+    FormsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -33,7 +37,8 @@ import { MoviesPage } from '../pages/movies/movies';
     MovieComponent,
     SearchBarComponent,
     MoviesPage,
-    HomePage
+    HomePage,
+    FiltersComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { MoviesService } from '../../shared/movies.service';
+import { Component, Input } from '@angular/core';
 import { NavParams } from 'ionic-angular';
+import { MoviesService } from '../../shared/movies.service';
 
 @Component({
   selector: 'movies-list',
   templateUrl: 'movies-list.html'
 })
 export class MoviesListComponent {
+  @Input() movies: Object[];
 
-  movies: Array<Object>;
   category: number = 19;
   title: string;
   xfields: string;
@@ -20,27 +20,6 @@ export class MoviesListComponent {
   ) {
     this.category = navParams.get('category');
     this.title = navParams.get('title');
-
-    this.goMovies(this.category, 1);
-  }
-
-  goMovies(category :number, offset: number) {
-    this.moviesService.getMovies(category, offset, 30).subscribe(data => {
-      if (!this.movies) {
-        this.movies = data;
-        // console.log(this.movies);
-      } else {
-        this.movies = this.movies.concat(data);
-      }
-    });
-  }
-
-  doInfinite(infiniteScroll) {
-    setTimeout(() => {
-      this.goMovies(this.category, this.movies.length + 1);
-
-      infiniteScroll.complete();
-    }, 500);
   }
 
   arrXfields(xfields: string) {
@@ -60,5 +39,4 @@ export class MoviesListComponent {
 
     return this.params;
   }
-
 }

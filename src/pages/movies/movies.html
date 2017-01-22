@@ -15,9 +15,11 @@
 </ion-header>
 
 <ion-content>
-  <filters (getFiltering)="onFilters($event)"></filters>
+  <filters *ngIf="!searchShowen" (getFiltering)="onFilters($event)"></filters>
 
-  <movies-list [movies]="movies"></movies-list>
+  <movies-list [movies]="movies">
+    
+  </movies-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-card *ngIf="thisIsAll">
@@ -28,7 +30,7 @@
     <ion-infinite-scroll-content
       *ngIf="!thisIsAll"
       loadingSpinner="crescent"
-      loadingText="Снимаем {{title}}...">
+      loadingText="Снимаем {{pageTitle}}...">
       </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

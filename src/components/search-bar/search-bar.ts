@@ -23,4 +23,8 @@ export class SearchBarComponent {
     }
   }
 
+  onCancel(ev: any) {
+    this.searchMovies.emit(ev);
+  }
+
 }

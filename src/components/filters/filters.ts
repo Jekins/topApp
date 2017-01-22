@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-
-import { Filter } from './filter';
+import { FiltersService } from '../../shared/filters.service';
+import { Filter } from '../../shared/filter.mock';
 
 @Component({
   selector: 'filters',
@@ -8,55 +8,21 @@ import { Filter } from './filter';
 })
 export class FiltersComponent {
   @Output() getFiltering = new EventEmitter();
-  
-  rating = 0;
-  years = [
-    '2017',
-    '2016',
-    '2015',
-    '2014',
-    '2013',
-  ];
-  genres = [
-    'комедия',
-    'фантастика',
-    'фэнтези',
-    'боевик',
-    'ужасы',
-    'триллер',
-    'мелодрама',
-    'драма',
-    'биография',
-    'история',
-  ];
-  sorts = [
-    {
-      val: 'date',
-      name: 'дате'
-    },
-    {
-      val: 'rating',
-      name: 'рейтингу'
-    },
-    {
-      val: 'news_read',
-      name: 'популярности'
-    },
-    {
-      val: 'title',
-      name: 'алфавиту'
-    }
-  ];
 
-  model = new Filter(undefined, undefined, 0, "date", false);
+  constructor(
+    public filtersService: FiltersService
+  ) {
+  }
+
+  filters = this.filtersService.filters;
+
+  sorts = this.filters.sorts[0].val;
 
   submitted: boolean = false;
 
   onSubmit(ev: any) {
     this.submitted = true;
-    this.getFiltering.emit(this.model);
+    this.getFiltering.emit(ev);
   }
-
-  get diagnostic() { return JSON.stringify(this.model); }
 
 }

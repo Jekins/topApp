@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 // shared
+import { FiltersService } from '../shared/filters.service';
 import { MoviesService } from '../shared/movies.service';
 
 // components
@@ -42,6 +43,7 @@ import { MoviesPage } from '../pages/movies/movies';
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FiltersService,
     MoviesService
   ]
 })

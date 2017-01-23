@@ -24,7 +24,7 @@ export class MoviesListComponent {
 
   arrXfields(xfields: string) {
     let xfieldsRep1 = xfields.replace('iframe|', 'iframe');
-    let xfieldsRep2 = xfields.replace('|v_rolyah||', '');
+    let xfieldsRep2 = xfieldsRep1.replace(/\|\|[a-zA-Z_]+\|\|\|/g, '||');
     let xfieldsSrc: string[] = xfieldsRep2.split('||');
     let movieXfieldsStr: string;
     let i: number;

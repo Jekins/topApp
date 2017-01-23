@@ -1,6 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FiltersService } from '../../shared/filters.service';
-import { Filter } from '../../shared/filter.mock';
 
 @Component({
   selector: 'filters',

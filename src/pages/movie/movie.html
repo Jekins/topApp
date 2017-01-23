@@ -1,0 +1,87 @@
+<ion-header class="movie-header">
+  <div class="trailer-box">
+    <div class="trailer-box__bg" [ngStyle]="{'background-image': 'url(http://topkino.tv/uploads/posts/posters/iphone360_' + movie.id + '.jpg)'}"></div>
+    <div class="trailer-box__content">
+      <button ion-button>Смотреть</button>
+      <button ion-button outline color="light">Трейлер</button>
+    </div>
+  </div>
+  <ion-navbar no-border-bottom>
+     <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="heart-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="movie-top-list" no-lines>
+    <ion-item>
+      <ion-thumbnail item-left class="big">
+        <img src="http://topkino.tv/uploads/posts/posters/iphone360_{{movie.id}}.jpg">
+      </ion-thumbnail>
+      <h2>
+        <b>{{movie.title}}</b>
+      </h2>
+      <h3>{{xfields.eng_title}}</h3>
+      <p>{{xfields.zhanr}}</p>
+      <p class="movie-info">
+        <span class="movie-info__left">
+          <b style="color: black">{{xfields.kachestvo}}</b>
+        </span>
+        <span class="movie-info__right">
+          {{xfields.year}}
+        </span>
+      </p>
+    </ion-item>
+  </ion-list>
+
+  <div padding>
+    <ion-segment [(ngModel)]="movieInfo">
+      <ion-segment-button value="params">
+        Параметры
+      </ion-segment-button>
+      <ion-segment-button value="description">
+        Описание
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+    
+  <div [ngSwitch]="movieInfo">
+    <ion-list *ngSwitchCase="'params'">
+      <ion-item *ngIf="xfields.kinopoisk">
+        Рейтинг Кинопоиск: 
+        <ion-badge item-right color="primary">{{xfields.kinopoisk}}</ion-badge>
+      </ion-item>
+      <ion-item *ngIf="xfields.imdb">
+        Рейтинг IMDb: 
+        <ion-badge item-right color="primary">{{xfields.imdb}}</ion-badge>
+      </ion-item>
+      <ion-item *ngIf="xfields.strana">
+        Страна: 
+        <span item-right class="in-line">{{xfields.strana}}</span>
+      </ion-item>
+      <ion-item *ngIf="xfields.zvuk">
+        Звук: 
+        <span item-right class="in-line">{{xfields.zvuk}}</span>
+      </ion-item>
+      <ion-item *ngIf="xfields.vremya">
+        Время: 
+        <span item-right class="in-line">{{xfields.vremya}}</span>
+      </ion-item>
+      <ion-item *ngIf="xfields.rezhisser">
+        Режиссер: 
+        <span item-right class="in-line">{{xfields.rezhisser}}</span>
+      </ion-item>
+      <ion-item *ngIf="xfields.v_rolyah">
+        В ролях: 
+        <span item-right class="in-line">{{xfields.v_rolyah}}</span>
+      </ion-item>
+    </ion-list>
+
+    <div *ngSwitchCase="'description'" padding>
+      {{movie.short_story}}
+    </div>
+  </div>
+</ion-content>

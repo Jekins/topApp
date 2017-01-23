@@ -12,10 +12,12 @@ import { FiltersComponent } from '../components/filters/filters';
 import { MoviesListComponent } from '../components/movies-list/movies-list';
 import { MovieComponent } from '../components/movie/movie';
 import { SearchBarComponent } from '../components/search-bar/search-bar';
+import { TabsMovieComponent } from '../components/tabs-movie/tabs-movie';
 
 // pages
 import { HomePage } from '../pages/home/home';
 import { MoviesPage } from '../pages/movies/movies';
+import { MoviePage } from '../pages/movie/movie';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { MoviesPage } from '../pages/movies/movies';
     SearchBarComponent,
     MoviesPage,
     HomePage,
-    FiltersComponent
+    FiltersComponent,
+    MoviePage,
+    TabsMovieComponent
   ],
   imports: [
     FormsModule,
@@ -39,7 +43,9 @@ import { MoviesPage } from '../pages/movies/movies';
     SearchBarComponent,
     MoviesPage,
     HomePage,
-    FiltersComponent
+    FiltersComponent,
+    MoviePage,
+    TabsMovieComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

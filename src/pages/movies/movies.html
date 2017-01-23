@@ -4,7 +4,7 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title *ngIf="!searchShowen">{{pageTitle}}</ion-title>
-    <search-bar *ngIf="searchShowen" (searchMovies)="onSearch($event)"></search-bar>
+    <search-bar *ngIf="searchShowen" (searchMovies)="onSearch($event)" [toggleSearch]="searchShowen"></search-bar>
     <ion-buttons end>
       <button ion-button icon-only (click)="toggleSearch()">
         <ion-icon name="search" *ngIf="!searchShowen"></ion-icon>

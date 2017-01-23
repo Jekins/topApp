@@ -1,0 +1,81 @@
+page-movie {
+	.item-md h2,
+	.item-md h3,
+	ion-label {
+		white-space: normal;
+	}
+
+	ion-list {
+		padding-top: 8px;
+	}
+
+	.toolbar-background {
+		background-color: transparent;
+	}
+	.header-md::after {
+		background-image: none;
+	}
+
+	ion-content  {
+		background-size: cover;
+		background-position: top center;
+		// margin-top: 130px;
+		// box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.4);
+	}
+	.fixed-content,
+	.scroll-content {
+		margin-top: 130px !important;
+	}
+	.fixed-content {
+		// filter: blur(25px);
+		// margin-top: 0 !important;
+		// background-image: url(http://topkino.tv/templates/Filmets/images/slider-current-bg.png);
+	}
+
+	.bar-button {
+		color: #fff;
+	}
+}
+.item ion-thumbnail.big img {
+	width: 65px !important;
+}
+
+.header-ios .toolbar-background-ios {
+	border: none;
+}
+
+.movie-top-list {
+	margin-bottom: 8px !important;
+}
+
+.movie-header {
+	padding-top: 16px;
+}
+
+.trailer-box {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	overflow: hidden;
+
+	&__bg {
+		position: absolute;
+		left: -10px;
+		right: -10px;
+		top: -10px;
+		bottom: -10px;
+		background-size: cover;
+		background-position: center center;
+		filter: blur(4px);
+	}
+	&__content {
+		position: relative;
+		height: 130px;
+		// background-image: url(http://topkino.tv/templates/Filmets/images/slider-current-bg.png);
+		background-size: cover;
+		background-position: center center;
+		padding-top: 60px;
+    	text-align: center;
+		background-color: rgba(22,22,22,.5);
+	}
+}

@@ -10,8 +10,8 @@ export class FiltersService {
 
   filters = {
       
-    category: Filter['category'] = '',
-    title: Filter['title'] = '',
+    category: Filter['category'],
+    title: Filter['title'],
     offset: Filter['offset'] = 0,
     rows: Filter['rows'] = 30,
     years: Filter['years'] = [

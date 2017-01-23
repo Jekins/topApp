@@ -1,9 +1,10 @@
 movie {}
-.item-md ion-thumbnail {
+.item ion-thumbnail {
 	min-width: 54px;
 }
-.item-md ion-thumbnail img {
+.item ion-thumbnail img {
 	width: 54px;
+	height: auto;
 }
 .movie-info {
 	display: flex;

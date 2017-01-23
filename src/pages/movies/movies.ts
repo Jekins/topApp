@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { MoviesService } from '../../shared/movies.service';
 import { Filter } from '../../shared/filter.mock';
+import { MoviesService } from '../../shared/movies.service';
 import { FiltersService } from '../../shared/filters.service';
 
 @Component({
@@ -75,10 +75,11 @@ export class MoviesPage {
       this.resetListMovies();
       if (this.filtersUsed) {
         this.newFilter = this.fromFilter;
+        this.newFilter.offset = this.filtersService.filters.offset;
       }
       this.goMovies();
     }
-
+    
     this.searchShowen = !this.searchShowen;
   }
 

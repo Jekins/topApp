@@ -1,4 +1,5 @@
 <ion-searchbar
-	(ionInput)="getMovies($event)"
+	#searchInput
+	(ionInput)="getMovies($event, toggleSearch)"
 	(ionCancel)="onCancel($event)"
 ></ion-searchbar>

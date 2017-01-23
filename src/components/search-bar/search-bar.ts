@@ -1,17 +1,23 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'search-bar',
   templateUrl: 'search-bar.html'
 })
 export class SearchBarComponent {
+  @Input() toggleSearch: boolean;
   @Output() searchMovies = new EventEmitter();
+  @ViewChild('searchInput') input;
 
   searchQuery: string = '';
 
-  constructor() {}
-  
-  getMovies(ev: any) {
+  constructor() {
+    if (this.toggleSearch) {
+      this.input.focus();
+    }
+  }
+
+  getMovies(ev: any, tog) {
     if (ev != undefined) {
       let val: string = ev.target.value;
       

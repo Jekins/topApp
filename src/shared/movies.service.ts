@@ -21,7 +21,6 @@ export class MoviesService {
   getMovies(
     filters
   ) {
-
     this.clean(filters);
 
     var obj = filters;

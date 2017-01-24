@@ -3,20 +3,20 @@
 
     <ion-item>
       <ion-label>Года</ion-label>
-      <ion-select multiple="true" cancelText="Отменить" okText="Принять" name="years" [(ngModel)]="years" required>
+      <ion-select multiple="true" cancelText="Отменить" okText="Принять" name="years" [(ngModel)]="afterSearch ? afterSearch.years : years" required>
         <ion-option [value]="year" *ngFor="let year of filters.years">{{year}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Жанры</ion-label>
-      <ion-select multiple="true" cancelText="Отменить" okText="Принять" name="genres" [(ngModel)]="genres" required>
+      <ion-select multiple="true" cancelText="Отменить" okText="Принять" name="genres" [(ngModel)]="afterSearch ? afterSearch.genres : genres" required>
         <ion-option [value]="genre" *ngFor="let genre of filters.genres">{{genre}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
-      <ion-range min="0" max="10" step="1" name="rating" [(ngModel)]="filters.rating">
+      <ion-range min="0" max="10" step="1" name="rating" [(ngModel)]="afterSearch ? afterSearch.rating : filters.rating">
         <ion-label range-left>Рейтинг от {{filters.rating}} </ion-label>
         <ion-label range-right>10</ion-label>
       </ion-range>
@@ -24,14 +24,14 @@
 
     <ion-item>
       <ion-label>Сортировать по</ion-label>
-      <ion-select cancelText="Отменить" okText="Принять" name="sorts" [(ngModel)]="sorts" required>
+      <ion-select cancelText="Отменить" okText="Принять" name="sorts" [(ngModel)]="afterSearch ? afterSearch.sorts : sorts" required>
         <ion-option [value]="sort.val" *ngFor="let sort of filters.sorts">{{sort.name}}</ion-option>
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Только хорошее качество</ion-label>
-      <ion-checkbox name="quality" [(ngModel)]="filters.quality"></ion-checkbox>
+      <ion-checkbox name="quality" [(ngModel)]="afterSearch ? afterSearch.quality : filters.quality"></ion-checkbox>
     </ion-item>
   </ion-list>
   <div padding>

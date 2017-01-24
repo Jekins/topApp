@@ -74,6 +74,7 @@ export class MoviesPage {
     if (this.searchShowen) {
       this.resetListMovies();
       if (this.filtersUsed) {
+        // console.log(this.fromFilter);
         this.newFilter = this.fromFilter;
         this.newFilter.offset = this.filtersService.filters.offset;
       }

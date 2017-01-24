@@ -17,7 +17,6 @@ export class MovieComponent {
   }
 
   getMore(movie: Object, xfields: Object) {
-    console.log(xfields);
     this.navCtrl.push(MoviePage, {
       movie: movie,
       xfields: xfields

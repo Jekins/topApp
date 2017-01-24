@@ -24,7 +24,7 @@ page-movie {
 	}
 	.fixed-content,
 	.scroll-content {
-		margin-top: 130px !important;
+		margin-top: 150px !important;
 	}
 	.fixed-content {
 		// filter: blur(25px);
@@ -48,7 +48,7 @@ page-movie {
 	margin-bottom: 8px !important;
 }
 
-.movie-header {
+.movie-header.header-ios {
 	padding-top: 16px;
 }
 
@@ -70,11 +70,11 @@ page-movie {
 	}
 	&__content {
 		position: relative;
-		height: 130px;
+		height: 150px;
 		// background-image: url(http://topkino.tv/templates/Filmets/images/slider-current-bg.png);
 		background-size: cover;
 		background-position: center center;
-		padding-top: 60px;
+		padding-top: 80px;
     	text-align: center;
 		background-color: rgba(22,22,22,.5);
 	}

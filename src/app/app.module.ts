@@ -12,7 +12,6 @@ import { FiltersComponent } from '../components/filters/filters';
 import { MoviesListComponent } from '../components/movies-list/movies-list';
 import { MovieComponent } from '../components/movie/movie';
 import { SearchBarComponent } from '../components/search-bar/search-bar';
-import { TabsMovieComponent } from '../components/tabs-movie/tabs-movie';
 
 // pages
 import { HomePage } from '../pages/home/home';
@@ -24,12 +23,11 @@ import { MoviePage } from '../pages/movie/movie';
     MyApp,
     MoviesListComponent,
     MovieComponent,
-    SearchBarComponent,
+    SearchBarComponent, 
     MoviesPage,
     HomePage,
     FiltersComponent,
-    MoviePage,
-    TabsMovieComponent
+    MoviePage
   ],
   imports: [
     FormsModule,
@@ -44,8 +42,7 @@ import { MoviePage } from '../pages/movie/movie';
     MoviesPage,
     HomePage,
     FiltersComponent,
-    MoviePage,
-    TabsMovieComponent
+    MoviePage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

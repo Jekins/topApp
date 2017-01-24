@@ -2,8 +2,8 @@
   <div class="trailer-box">
     <div class="trailer-box__bg" [ngStyle]="{'background-image': 'url(http://topkino.tv/uploads/posts/posters/iphone360_' + movie.id + '.jpg)'}"></div>
     <div class="trailer-box__content">
-      <button ion-button>Смотреть</button>
-      <button ion-button outline color="light">Трейлер</button>
+      <button ion-button (click)="goVideo()">Смотреть</button>
+      <button ion-button outline color="light" (click)="goTrailer(xfields.trailer_k)">Трейлер</button>
     </div>
   </div>
   <ion-navbar no-border-bottom>

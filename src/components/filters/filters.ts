@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Filter } from '../../shared/filter.mock';
 import { FiltersService } from '../../shared/filters.service';
 
 @Component({
@@ -6,6 +7,7 @@ import { FiltersService } from '../../shared/filters.service';
   templateUrl: 'filters.html'
 })
 export class FiltersComponent {
+  @Input() afterSearch: Filter[];
   @Output() getFiltering = new EventEmitter();
 
   constructor(

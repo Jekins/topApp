@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class MoviesService {
   private moviesUrl = 'http://topkino.tv/modules/json-db/json-db.php';
+  private videoUrl = 'http://topkino.tv/modules/get-video/get-video.php';
 
   constructor (
     private http: Http
@@ -19,7 +20,8 @@ export class MoviesService {
   }
 
   getMovies(
-    filters
+    filters,
+    videoUrl: boolean = false
   ) {
     this.clean(filters);
 
@@ -32,8 +34,16 @@ export class MoviesService {
         }
         str += key + "=" + obj[key];
     }
+
+    let url: string;
+
+    if (videoUrl) {
+      url = this.videoUrl;
+    } else {
+      url = this.moviesUrl;
+    }
     
-    return this.http.get(this.moviesUrl+'?'+str)
+    return this.http.get(url+'?'+str)
       .map((res:Response) => res.json());
   }
 }

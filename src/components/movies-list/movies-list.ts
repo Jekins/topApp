@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavParams } from 'ionic-angular';
-import { MoviesService } from '../../shared/movies.service';
+import { BackendService } from '../../shared/backend.service';
 
 @Component({
   selector: 'movies-list',
@@ -15,7 +15,7 @@ export class MoviesListComponent {
   params: Object;
 
   constructor(
-    private moviesService: MoviesService,
+    private backendService: BackendService,
     private navParams: NavParams
   ) {
     this.category = navParams.get('category');

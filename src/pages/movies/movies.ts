@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Filter } from '../../shared/filter.mock';
-import { MoviesService } from '../../shared/movies.service';
-import { FiltersService } from '../../shared/filters.service';
+import { BackendService } from '../../shared/backend.service';
+import { FilterData } from '../../shared/filter.data';
 
 @Component({
   selector: 'page-movies',
@@ -25,8 +25,8 @@ export class MoviesPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private moviesService: MoviesService,
-    private filtersService: FiltersService,
+    private backendService: BackendService,
+    private filterData: FilterData,
     public loadingCtrl: LoadingController
   ) {
     this.pageTitle = this.navParams.get('title');
@@ -39,7 +39,7 @@ export class MoviesPage {
   goMovies() {
     // this.toggleLoading();
 
-    this.moviesService.getMovies(this.newFilter).subscribe(data => {
+    this.backendService.getData(this.newFilter, 'movies').subscribe(data => {
 
       if (!this.movies) {
         this.movies = data;
@@ -48,7 +48,7 @@ export class MoviesPage {
       }
 
       
-      if (data.length < this.filtersService.filters.rows) {
+      if (data.length < this.filterData.filter.rows) {
         this.thisIsAll = 'Это все результаты';
       } else {
         this.thisIsAll = '';
@@ -76,7 +76,7 @@ export class MoviesPage {
       if (this.filtersUsed) {
         // console.log(this.fromFilter);
         this.newFilter = this.fromFilter;
-        this.newFilter.offset = this.filtersService.filters.offset;
+        this.newFilter.offset = this.filterData.filter.offset;
       }
       this.goMovies();
     }
@@ -90,7 +90,7 @@ export class MoviesPage {
     if (ev) {
       this.newFilter.category = undefined;
       this.newFilter.title = ev;
-      this.newFilter.sorts = this.filtersService.filters.sorts[3].val;
+      this.newFilter.sorts = this.filterData.filter.sorts[3]['val'];
   
       this.goMovies();
     }
@@ -110,7 +110,7 @@ export class MoviesPage {
     this.movies = [];
     this.newFilter = new Filter();
     this.newFilter.category = this.navParams.get('category');
-    this.newFilter.sorts = this.filtersService.filters.sorts[0].val;
+    this.newFilter.sorts = this.filterData.filter.sorts[0]['val'];
   }
 
   toggleLoading() {

@@ -16,7 +16,7 @@ export class MoviesListComponent {
   }
 
   goMovies(category :number, offset: number) {
-    this.moviesService.getMovies(category, offset, 30).subscribe(data => {
+    this.moviesService.getData(category, offset, 30).subscribe(data => {
       if (!this.movies) {
         this.movies = data;
       } else {

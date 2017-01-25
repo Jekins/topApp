@@ -17,7 +17,7 @@ export class SearchBarComponent {
     }
   }
 
-  getMovies(ev: any, tog) {
+  onSearching(ev: any, tog) {
     if (ev != undefined) {
       let val: string = ev.target.value;
       

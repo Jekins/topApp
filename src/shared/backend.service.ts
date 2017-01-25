@@ -3,7 +3,7 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 
 @Injectable()
-export class MoviesService {
+export class BackendService {
   private moviesUrl = 'http://topkino.tv/modules/json-db/json-db.php';
   private videoUrl = 'http://topkino.tv/modules/get-video/get-video.php';
 
@@ -19,27 +19,25 @@ export class MoviesService {
     }
   }
 
-  getMovies(
-    filters,
-    videoUrl: boolean = false
+  getData(
+    params,
+    movies?,
+    video?
   ) {
-    this.clean(filters);
-
-    var obj = filters;
+    this.clean(params);
 
     var str = "";
-    for (var key in obj) {
-        if (str != "") {
-            str += "&";
-        }
-        str += key + "=" + obj[key];
+    for (var key in params) {
+      if (str != "") {
+          str += "&";
+      }
+      str += key + "=" + params[key];
     }
 
     let url: string;
-
-    if (videoUrl) {
+    if (video == 'video') {
       url = this.videoUrl;
-    } else {
+    } else if (movies == 'movies') {
       url = this.moviesUrl;
     }
     

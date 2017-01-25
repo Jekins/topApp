@@ -7,7 +7,7 @@ export class Filter {
   years?: string[];
   genres?: string[];
   rating?: number;
-  sorts?: string;
+  sorts?: Object[];
   quality?: boolean;
 
 }

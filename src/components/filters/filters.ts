@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Filter } from '../../shared/filter.mock';
-import { FiltersService } from '../../shared/filters.service';
+import { FilterData } from '../../shared/filter.data';
 
 @Component({
   selector: 'filters',
@@ -11,13 +11,13 @@ export class FiltersComponent {
   @Output() getFiltering = new EventEmitter();
 
   constructor(
-    public filtersService: FiltersService
+    public filterData: FilterData
   ) {
   }
 
-  filters = this.filtersService.filters;
+  filters = this.filterData.filter;
 
-  sorts = this.filters.sorts[0].val;
+  sorts = this.filters.sorts[0]['val'];
 
   submitted: boolean = false;
 

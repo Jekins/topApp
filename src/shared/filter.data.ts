@@ -3,25 +3,21 @@ import { Injectable } from '@angular/core';
 import { Filter } from './filter.mock';
 
 @Injectable()
-export class FiltersService {
+export class FilterData {
+
+  filter = new Filter();
 
   constructor() {
-  }
-
-  filters = {
-      
-    category: Filter['category'],
-    title: Filter['title'],
-    offset: Filter['offset'] = 0,
-    rows: Filter['rows'] = 30,
-    years: Filter['years'] = [
+    this.filter.offset = 0;
+    this.filter.rows = 30;
+    this.filter.years = [
       '2017',
       '2016',
       '2015',
       '2014',
       '2013',
-    ],
-    genres: Filter['genres'] = [
+    ];
+    this.filter.genres = [
       'комедия',
       'фантастика',
       'фэнтези',
@@ -32,9 +28,9 @@ export class FiltersService {
       'драма',
       'биография',
       'история',
-    ],
-    rating: Filter['rating'] = 0,
-    sorts: Filter['sorts'] = [
+    ];
+    this.filter.rating = 0;
+    this.filter.sorts = [
       {
         val: 'date',
         name: 'дате'
@@ -51,8 +47,8 @@ export class FiltersService {
         val: 'title',
         name: 'алфавиту'
       }
-    ],
-    quality: Filter['quality'] = false
-  };
+    ]
+    this.filter.quality = false;
+  }
 
 }

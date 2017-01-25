@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { StreamingMedia, StreamingVideoOptions } from 'ionic-native';
 import { Params } from '../../shared/params.mock';
-import { MoviesService } from '../../shared/movies.service';
+import { BackendService } from '../../shared/backend.service';
 
 @Component({
   selector: 'page-movie',
@@ -17,7 +17,7 @@ export class MoviePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public moviesService: MoviesService
+    public backendService: BackendService
   ) {
     this.movie = navParams.get('movie');
     this.xfields = navParams.get('xfields');
@@ -43,7 +43,7 @@ export class MoviePage {
     if (this.xfields.format === 'Полнометражный') {
     
     } else {
-      
+
     }
     
 
@@ -59,7 +59,7 @@ export class MoviePage {
     };
     console.log();
 
-    this.moviesService.getMovies(params, true).subscribe(data => {
+    this.backendService.getData(params, 'video').subscribe(data => {
       StreamingMedia.playVideo(data.manifest.m3u8, options);
     });
     

@@ -10,7 +10,7 @@ export class MoviesService {
     private http: Http
   ) {}
 
-  getMovies(category: number, offset: number, rows: number) {
+  getData(category: number, offset: number, rows: number) {
     let categoryStr: string = 'category=' + category;
     let offsetStr: string = 'offset=' + offset;
     let rowsStr: string = 'rows=' + rows;

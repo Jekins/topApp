@@ -1,6 +1,6 @@
 export class Filter {
 
-  category?: string;
+  category?: Object;
   title?: string;
   offset?: number;
   rows?: number;

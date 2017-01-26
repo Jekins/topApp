@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, ViewChild} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { FilterService } from '../../shared/filter.service';
 
 @Component({
   selector: 'search-bar',
@@ -11,10 +12,12 @@ export class SearchBarComponent {
 
   searchQuery: string = '';
 
-  constructor() {
-    if (this.toggleSearch) {
-      this.input.focus();
-    }
+  constructor(
+    private filterService: FilterService
+  ) {
+    // if (this.toggleSearch) {
+    //   this.input.focus();
+    // }
   }
 
   onSearching(ev: any, tog) {
@@ -30,7 +33,6 @@ export class SearchBarComponent {
   }
 
   onCancel(ev: any) {
-    this.searchMovies.emit(ev);
   }
 
 }

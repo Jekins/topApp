@@ -8,6 +8,13 @@ export class FilterData {
   filter = new Filter();
 
   constructor() {
+    
+    this.filter.category = {
+      films: 19,
+      serials: 3,
+      mult: 15,
+      anime: 16
+    };
     this.filter.offset = 0;
     this.filter.rows = 30;
     this.filter.years = [
@@ -29,7 +36,6 @@ export class FilterData {
       'биография',
       'история',
     ];
-    this.filter.rating = 0;
     this.filter.sorts = [
       {
         val: 'date',

@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { Filter } from '../../shared/filter.mock';
-import { BackendService } from '../../shared/backend.service';
 import { FilterData } from '../../shared/filter.data';
+import { BackendService } from '../../shared/backend.service';
+import { MoviesService } from '../../shared/movies.service';
+import { FilterService } from '../../shared/filter.service';
 
 @Component({
   selector: 'page-movies',
@@ -10,59 +12,47 @@ import { FilterData } from '../../shared/filter.data';
 })
 export class MoviesPage {
 
-  newFilter = new Filter();
-  fromFilter: Filter;
-
-  movies: Object[];
+  movies: string[];
   searchShowen: boolean = false;
-  filtersUsed: boolean = false;
-  loadingShowen: boolean = false;
-  xfields: string;
   thisIsAll: string;
   pageTitle: string;
-  pageCategory: string;
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
     private backendService: BackendService,
-    private filterData: FilterData,
-    public loadingCtrl: LoadingController
+    private moviesService: MoviesService,
+    private filterService: FilterService,
+    private filterData: FilterData
   ) {
     this.pageTitle = this.navParams.get('title');
-    this.pageCategory = this.navParams.get('category');
-
-    this.resetListMovies();
-    this.goMovies();
   }
 
-  goMovies() {
-    // this.toggleLoading();
-
-    this.backendService.getData(this.newFilter, 'movies').subscribe(data => {
-
-      if (!this.movies) {
-        this.movies = data;
-      } else {
-        this.movies = this.movies.concat(data);
-      }
-
+  showMovies() {
+    // this.moviesService.getMovies().then(function(data){
       
+    //   this.movies = data;
+
+    //   // if (data.length < this.filterData.filter.rows) {
+    //   //   this.thisIsAll = 'Это все результаты';
+    //   // } else {
+    //   //   this.thisIsAll = undefined;
+    //   // }
+    // });
+    this.backendService.getData(this.filterService.getFilter(), 'movies').subscribe(data => {
+      this.movies = this.moviesService.getMovies(data);
+		
       if (data.length < this.filterData.filter.rows) {
         this.thisIsAll = 'Это все результаты';
       } else {
-        this.thisIsAll = '';
+        this.thisIsAll = undefined;
       }
     });
   }
 
   doInfinite(infiniteScroll) {
-    if (this.thisIsAll == '') {
+    if (!this.thisIsAll) {
       setTimeout(() => {
-        
-        this.newFilter.offset = this.movies.length + 1;
-        this.goMovies();
-  
+        this.showMovies();
         infiniteScroll.complete();
       }, 500);
     } else {
@@ -71,60 +61,18 @@ export class MoviesPage {
   }
 
   toggleSearch() {
-    if (this.searchShowen) {
-      this.resetListMovies();
-      if (this.filtersUsed) {
-        // console.log(this.fromFilter);
-        this.newFilter = this.fromFilter;
-        this.newFilter.offset = this.filterData.filter.offset;
-      }
-      this.goMovies();
-    }
-    
     this.searchShowen = !this.searchShowen;
   }
 
-  onSearch(ev: string) {
-    this.resetListMovies();
-
-    if (ev) {
-      this.newFilter.category = undefined;
-      this.newFilter.title = ev;
-      this.newFilter.sorts = this.filterData.filter.sorts[3]['val'];
-  
-      this.goMovies();
-    }
+  onSearch(title: string) {
+    this.moviesService.searchMovies(title);
+    this.showMovies();
   }
 
-  onFilters(filter: Filter[]) {
-    this.resetListMovies();
-    
-    this.newFilter = Object.assign(this.newFilter, filter);
-    this.fromFilter = this.newFilter;
-    this.filtersUsed = !this.filtersUsed;
-
-    this.goMovies();
-  }
-
-  resetListMovies() {
-    this.movies = [];
-    this.newFilter = new Filter();
-    this.newFilter.category = this.navParams.get('category');
-    this.newFilter.sorts = this.filterData.filter.sorts[0]['val'];
-  }
-
-  toggleLoading() {
-    if (this.loadingShowen) {
-      this.loadingCtrl.create({
-      }).dismiss();
-    } else {
-
-      this.loadingCtrl.create({
-        content: 'Снимаем фильмы...',
-        // duration: 3000,
-        dismissOnPageChange: true
-      }).present();
-    }
+  onFilter(filter: Filter) {
+    this.moviesService.resetMovies();
+    this.filterService.setFilter(filter);
+    this.showMovies();
   }
 
 }

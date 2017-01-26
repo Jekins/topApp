@@ -15,7 +15,7 @@
 </ion-header>
 
 <ion-content>
-  <filters *ngIf="!searchShowen" (getFiltering)="onFilters($event)" [afterSearch]="fromFilter"></filters>
+  <filters *ngIf="!searchShowen" (filterGo)="onFilter($event)"></filters>
 
   <movies-list [movies]="movies">
     

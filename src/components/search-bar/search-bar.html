@@ -2,4 +2,5 @@
 	#searchInput
 	(ionInput)="onSearching($event, toggleSearch)"
 	(ionCancel)="onCancel($event)"
+	[debounce]="600"
 ></ion-searchbar>

@@ -21,8 +21,7 @@ export class BackendService {
 
   getData(
     params,
-    movies?,
-    video?
+    type?,
   ) {
     this.clean(params);
 
@@ -35,9 +34,10 @@ export class BackendService {
     }
 
     let url: string;
-    if (video == 'video') {
+    if (type == 'video') {
       url = this.videoUrl;
-    } else if (movies == 'movies') {
+      console.log(url);
+    } else if (type == 'movies') {
       url = this.moviesUrl;
     }
     

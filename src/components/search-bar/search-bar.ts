@@ -6,7 +6,7 @@ import { FilterService } from '../../shared/filter.service';
   templateUrl: 'search-bar.html'
 })
 export class SearchBarComponent {
-  @Input() toggleSearch: boolean;
+  // @Input() toggleSearch: boolean;
   @Output() searchMovies = new EventEmitter();
   @ViewChild('searchInput') input;
 
@@ -20,7 +20,7 @@ export class SearchBarComponent {
     // }
   }
 
-  onSearching(ev: any, tog) {
+  onSearching(ev: any) {
     if (ev != undefined) {
       let val: string = ev.target.value;
       

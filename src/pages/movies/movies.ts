@@ -28,16 +28,6 @@ export class MoviesPage {
   }
 
   showMovies() {
-    // this.moviesService.getMovies().then(function(data){
-      
-    //   this.movies = data;
-
-    //   // if (data.length < this.filterData.filter.rows) {
-    //   //   this.thisIsAll = 'Это все результаты';
-    //   // } else {
-    //   //   this.thisIsAll = undefined;
-    //   // }
-    // });
     this.backendService.getData(this.filterService.getFilter(), 'movies').subscribe(data => {
       this.movies = this.moviesService.getMovies(data);
 		

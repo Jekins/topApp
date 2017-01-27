@@ -57,7 +57,6 @@ export class MoviePage {
       errorCallback: (e) => { console.log('Error streaming') },
       orientation: 'landscape'
     };
-    console.log();
 
     this.backendService.getData(params, 'video').subscribe(data => {
       StreamingMedia.playVideo(data.manifest.m3u8, options);

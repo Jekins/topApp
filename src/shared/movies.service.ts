@@ -24,8 +24,6 @@ export class MoviesService {
 		this.filter.offset = this.movies.length + 1;
 		this.filterService.setFilter(this.filter);
 
-		console.log(this.filterService.getFilter());
-
 		return this.movies;
 	}
 	resetMovies() {

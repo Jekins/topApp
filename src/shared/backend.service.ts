@@ -6,6 +6,7 @@ import 'rxjs/Rx';
 export class BackendService {
   private moviesUrl = 'http://topkino.tv/modules/json-db/json-db.php';
   private videoUrl = 'http://topkino.tv/modules/get-video/get-video.php';
+  private moonUrl = 'http://topkino.tv/modules/moon/moon.php';
 
   constructor (
     private http: Http
@@ -39,6 +40,8 @@ export class BackendService {
       console.log(url);
     } else if (type == 'movies') {
       url = this.moviesUrl;
+    } else if (type == 'moon') {
+      url = this.moonUrl;
     }
     
     return this.http.get(url+'?'+str)

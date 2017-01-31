@@ -1,0 +1,106 @@
+seasons {
+	& ion-slide {
+		background-color: #fff;
+		align-items: initial;
+
+		& ion-content {
+			position: inherit;
+
+			.fixed-content, .scroll-content {
+				margin-top: 165px;
+				// margin-bottom: 45px;
+			}
+		}
+	}
+	& ion-footer {
+		& ion-list {
+			margin: 0 !important;
+		}
+		& .toolbar-md {
+			padding: 0;
+			min-height: 100%;
+		}
+	}
+	& .slides {
+		background-color: #fff;
+		padding-bottom: 45px;
+	}
+	& .header-md::after {
+		background: none;
+	}
+	& .toolbar-background {
+		background-color: transparent !important;
+	}
+	& .bar-button {
+		font-size: 1.8rem;
+		padding-right: 8px;
+	}
+}
+
+.last-episode {
+    height: 165px;
+    padding-top: 0;
+    background: #f0f0f0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 1px 10px rgba(0,0,0,.4);
+	// box-shadow: 0 2px 5px rgba(0,0,0,.15);
+
+	&__bg {
+		// overflow: hidden;
+
+		&-inner {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-size: cover;
+			background-position: center center;
+			filter: blur(20px);
+		}
+	}
+	&__content {
+		position: relative;
+		height: 100%;
+		text-align: center;
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		background-color: rgba(22,22,22,.5);
+
+		> * {
+			width: 100%;
+		}
+	}
+	&__title {
+		color: #fff;
+		text-align: left;
+		margin-top: 8px;
+		font-size: 1.8rem;
+
+		> * {
+			margin-bottom: 0;
+		}
+	}
+	&__controls {
+		display: flex;
+		justify-content: space-between;
+		padding-left: 4px;
+		padding-right: 4px;
+		align-items: center;
+
+		.button {
+			font-size: 1.4em;
+			color: #fff;
+
+			&:first-child,
+			&:last-child {
+				font-size: .9em;
+			}
+		}
+	}
+}

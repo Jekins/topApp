@@ -14,6 +14,7 @@ import { FiltersComponent } from '../components/filters/filters';
 import { MoviesListComponent } from '../components/movies-list/movies-list';
 import { MovieComponent } from '../components/movie/movie';
 import { SearchBarComponent } from '../components/search-bar/search-bar';
+import { SeasonsComponent } from '../components/seasons/seasons';
 
 // pages
 import { HomePage } from '../pages/home/home';
@@ -29,7 +30,8 @@ import { MoviePage } from '../pages/movie/movie';
     MoviesPage,
     HomePage,
     FiltersComponent,
-    MoviePage
+    MoviePage,
+    SeasonsComponent
   ],
   imports: [
     FormsModule,
@@ -44,7 +46,8 @@ import { MoviePage } from '../pages/movie/movie';
     MoviesPage,
     HomePage,
     FiltersComponent,
-    MoviePage
+    MoviePage,
+    SeasonsComponent
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

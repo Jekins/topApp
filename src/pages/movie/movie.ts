@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { StreamingMedia, StreamingVideoOptions } from 'ionic-native';
 import { Params } from '../../shared/params.mock';
 import { BackendService } from '../../shared/backend.service';
+import { SeasonsComponent } from '../../components/seasons/seasons';
 
 @Component({
   selector: 'page-movie',
@@ -13,14 +14,18 @@ export class MoviePage {
   movie: any;
   xfields: any;
   movieInfo = 'params';
+  serial: boolean;
+  moon: Object[];
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public backendService: BackendService
+    public backendService: BackendService,
+    public modalCtrl: ModalController
   ) {
     this.movie = navParams.get('movie');
     this.xfields = navParams.get('xfields');
+    this.serial= this.xfields.format == 'Многосерийный' ? true : false;
   }
 
   goTrailer(link: string) {
@@ -32,6 +37,7 @@ export class MoviePage {
     
     StreamingMedia.playVideo('http://kp.cdn.yandex.net/' + link, options);
   }
+
   goVideo() {
     var getLocation = function(href) {
       var l = document.createElement("a");
@@ -39,14 +45,6 @@ export class MoviePage {
       return l;
     };
     var link = getLocation(this.xfields.player);
-
-    if (this.xfields.format === 'Полнометражный') {
-    
-    } else {
-
-    }
-    
-
     let params = new Params();
     params.type = link.pathname.split('/')[1];
     params.key = link.pathname.split('/')[2];
@@ -57,11 +55,16 @@ export class MoviePage {
       errorCallback: (e) => { console.log('Error streaming') },
       orientation: 'landscape'
     };
-
+    
     this.backendService.getData(params, 'video').subscribe(data => {
-      StreamingMedia.playVideo(data.manifest.m3u8, options);
+        StreamingMedia.playVideo(data.manifest.m3u8, options);
     });
     
+  }
+
+  goSeasons() {
+    let modal = this.modalCtrl.create(SeasonsComponent, {xfields: this.xfields});
+    modal.present();
   }
 
 }

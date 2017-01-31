@@ -1,0 +1,57 @@
+<ion-header class="movie-header">
+  <div class="last-episode">
+    <div class="last-episode__bg">
+      <div class="last-episode__bg-inner" [ngStyle]="{'background-image': 'url(http://topkino.tv/uploads/posts/posters/iphone360_' + xfields.kinopoisk_id + '.jpg)'}"></div>
+    </div>
+    <div class="last-episode__content">
+      <div>
+        <div class="last-episode__controls">
+          <button ion-button icon-only clear round><ion-icon name="skip-backward"></ion-icon></button>
+          <button ion-button icon-only clear round><ion-icon name="play"></ion-icon></button> 
+          <button ion-button icon-only clear round><ion-icon name="skip-forward"></ion-icon></button>
+        </div>
+        <div class="last-episode__title" padding>
+          Серия 23
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Сезон 1
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Закрыть</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-slides pager>
+
+  <ion-slide *ngFor="let season of seasons">
+    <ion-content>
+      <ion-list>
+        <button ion-item *ngFor="let episod of season.episodes">
+        Серия {{episod}}
+        </button>
+      </ion-list>
+    </ion-content>
+  </ion-slide>
+
+</ion-slides>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-list no-lines>
+      <ion-item>
+        <ion-label>Озвучка</ion-label>
+        <ion-select [(ngModel)]="translators" (ionChange)="getTranslatorEpisodes(translators)">
+          <ion-option *ngFor="let trans of video" [value]="trans.translator_id">{{trans.translator}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-toolbar>
+</ion-footer>

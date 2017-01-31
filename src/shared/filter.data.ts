@@ -10,6 +10,7 @@ export class FilterData {
   constructor() {
     
     this.filter.category = {
+      main: 0,
       films: 19,
       serials: 3,
       mult: 15,

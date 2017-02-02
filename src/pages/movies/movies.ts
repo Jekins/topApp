@@ -5,6 +5,7 @@ import { FilterData } from '../../shared/filter.data';
 import { BackendService } from '../../shared/backend.service';
 import { MoviesService } from '../../shared/movies.service';
 import { FilterService } from '../../shared/filter.service';
+import { LoadingService } from '../../shared/loading.service';
 
 @Component({
   selector: 'page-movies',
@@ -22,14 +23,19 @@ export class MoviesPage {
     private backendService: BackendService,
     private moviesService: MoviesService,
     private filterService: FilterService,
-    private filterData: FilterData
+    private filterData: FilterData,
+    private loadingService: LoadingService
   ) {
     this.pageTitle = this.navParams.get('title');
   }
 
-  showMovies() {
-    this.backendService.getData(this.filterService.getFilter(), 'movies').subscribe(data => {
+  showMovies(loading: boolean = true) {
+    this.backendService.getData(this.filterService.getFilter(), 'movies', loading).subscribe(data => {
       this.movies = this.moviesService.getMovies(data);
+
+      if (loading) {
+        this.loadingService.hideLoading();
+      }
 		
       if (data.length < this.filterData.filter.rows) {
         this.thisIsAll = 'Это все результаты';
@@ -42,7 +48,7 @@ export class MoviesPage {
   doInfinite(infiniteScroll) {
     if (!this.thisIsAll) {
       setTimeout(() => {
-        this.showMovies();
+        this.showMovies(false);
         infiniteScroll.complete();
       }, 500);
     } else {
@@ -56,7 +62,7 @@ export class MoviesPage {
 
   onSearch(title: string) {
     this.moviesService.searchMovies(title);
-    this.showMovies();
+    this.showMovies(false);
   }
 
   onFilter(filter: Filter) {

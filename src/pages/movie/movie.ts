@@ -3,6 +3,7 @@ import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { StreamingMedia, StreamingVideoOptions } from 'ionic-native';
 import { Params } from '../../shared/params.mock';
 import { BackendService } from '../../shared/backend.service';
+import { LoadingService } from '../../shared/loading.service';
 import { SeasonsComponent } from '../../components/seasons/seasons';
 
 @Component({
@@ -21,7 +22,8 @@ export class MoviePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public backendService: BackendService,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private loadingService: LoadingService
   ) {
     this.movie = navParams.get('movie');
     this.xfields = navParams.get('xfields');
@@ -55,8 +57,9 @@ export class MoviePage {
       errorCallback: (e) => { console.log('Error streaming') },
       orientation: 'landscape'
     };
-    
+
     this.backendService.getData(params, 'video').subscribe(data => {
+        this.loadingService.hideLoading();
         StreamingMedia.playVideo(data.manifest.m3u8, options);
     });
     

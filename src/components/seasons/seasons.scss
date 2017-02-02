@@ -1,4 +1,10 @@
 seasons {
+	& .text-ios-primary {
+		color: #fff;
+	}
+	& ion-footer {
+		background-color: #fff;
+	}
 	& ion-slide {
 		background-color: #fff;
 		align-items: initial;
@@ -8,8 +14,16 @@ seasons {
 
 			.fixed-content, .scroll-content {
 				margin-top: 165px;
+				transition: .2s;
 				// margin-bottom: 45px;
 			}
+		}
+	}
+	.full-content {
+		.fixed-content,
+		.scroll-content {
+			transition: .2s;
+			margin-top: 56px !important;
 		}
 	}
 	& ion-footer {
@@ -47,8 +61,13 @@ seasons {
 	z-index: 1;
     overflow: hidden;
     box-shadow: 0 1px 10px rgba(0,0,0,.4);
+	transition: .2s;
 	// box-shadow: 0 2px 5px rgba(0,0,0,.15);
+	transform: translateY(0);
 
+	&_collapsed {
+		transform: translateY(-110px);
+	}
 	&__bg {
 		// overflow: hidden;
 
@@ -102,5 +121,14 @@ seasons {
 				font-size: .9em;
 			}
 		}
+		.ios & {
+			top: 16px;
+    		position: relative;
+		}
 	}
+}
+
+.swiper-pagination-fraction:before {
+	content: 'Сезон: ';
+	top: 0;
 }

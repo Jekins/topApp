@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx';
+import { LoadingService } from './loading.service';
 
 @Injectable()
 export class BackendService {
@@ -9,7 +10,8 @@ export class BackendService {
   private moonUrl = 'http://topkino.tv/modules/moon/moon.php';
 
   constructor (
-    private http: Http
+    private http: Http,
+    private loadingService: LoadingService
   ) {}
 
   clean(obj) {
@@ -23,6 +25,7 @@ export class BackendService {
   getData(
     params,
     type?,
+    loading = true
   ) {
     this.clean(params);
 
@@ -37,14 +40,17 @@ export class BackendService {
     let url: string;
     if (type == 'video') {
       url = this.videoUrl;
-      console.log(url);
     } else if (type == 'movies') {
       url = this.moviesUrl;
     } else if (type == 'moon') {
       url = this.moonUrl;
     }
+
+    if (loading) {
+      this.loadingService.showLoading();
+    }
     
-    return this.http.get(url+'?'+str)
-      .map((res:Response) => res.json());
+    return this.http.get(url + '?' + str)
+      .map((res: Response) => res.json());
   }
 }

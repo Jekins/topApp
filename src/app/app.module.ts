@@ -8,6 +8,7 @@ import { FilterData } from '../shared/filter.data';
 import { BackendService } from '../shared/backend.service';
 import { MoviesService } from '../shared/movies.service';
 import { FilterService } from '../shared/filter.service';
+import { LoadingService } from '../shared/loading.service';
 
 // components
 import { FiltersComponent } from '../components/filters/filters';
@@ -54,7 +55,8 @@ import { MoviePage } from '../pages/movie/movie';
     FilterData,
     BackendService,
     MoviesService,
-    FilterService
+    FilterService,
+    LoadingService
   ]
 })
 export class AppModule {}

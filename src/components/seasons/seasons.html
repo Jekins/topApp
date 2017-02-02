@@ -1,41 +1,41 @@
 <ion-header class="movie-header">
-  <div class="last-episode">
+  <div class="last-episode" [class.last-episode_collapsed]="!currentEpisode">
     <div class="last-episode__bg">
       <div class="last-episode__bg-inner" [ngStyle]="{'background-image': 'url(http://topkino.tv/uploads/posts/posters/iphone360_' + xfields.kinopoisk_id + '.jpg)'}"></div>
     </div>
     <div class="last-episode__content">
-      <div>
+      <div *ngIf="currentEpisode">
         <div class="last-episode__controls">
           <button ion-button icon-only clear round><ion-icon name="skip-backward"></ion-icon></button>
-          <button ion-button icon-only clear round><ion-icon name="play"></ion-icon></button> 
+          <button ion-button icon-only clear round (click)="goVideo()"><ion-icon name="play"></ion-icon></button> 
           <button ion-button icon-only clear round><ion-icon name="skip-forward"></ion-icon></button>
         </div>
         <div class="last-episode__title" padding>
-          Серия 23
+          Серия {{currentEpisode}}
         </div>
       </div>
     </div>
   </div>
   <ion-toolbar color="primary">
-    <ion-title>
-      Сезон 1
-    </ion-title>
     <ion-buttons start>
       <button ion-button (click)="dismiss()">
-        <span ion-text color="primary" showWhen="ios">Закрыть</span>
-        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        <ion-icon name="close" class="back-button-icon-ios"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-title>
+      <span *ngIf="!currentEpisode">Выберите сезон и серию</span>
+      <span *ngIf="currentEpisode">Сезон {{currentSeason}}</span>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-slides pager>
+<ion-slides pager paginationType="fraction" [class.full-content]="!currentEpisode">
 
   <ion-slide *ngFor="let season of seasons">
     <ion-content>
       <ion-list>
-        <button ion-item *ngFor="let episod of season.episodes">
-        Серия {{episod}}
+        <button ion-item *ngFor="let episode of season.episodes" (click)="showEpisode(episode, season.season_number)">
+        Серия {{episode}}
         </button>
       </ion-list>
     </ion-content>
